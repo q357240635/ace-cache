@@ -189,7 +189,7 @@ public class ReflectionUtils {
      * 循环向上转型, 获取对象的DeclaredMethod,并强制设置为可访问.
      * 如向上转型到Object仍无法找到, 返回null.
      * 匹配函数名+参数类型。
-     * <p/>
+     *
      * 用于方法需要被多次调用的情况. 先使用本函数先取得Method,然后调用Method.invoke(Object obj, Object... args)
      */
     public static Method getAccessibleMethod(final Object obj, final String methodName,
@@ -214,7 +214,7 @@ public class ReflectionUtils {
      * 循环向上转型, 获取对象的DeclaredMethod,并强制设置为可访问.
      * 如向上转型到Object仍无法找到, 返回null.
      * 只匹配函数名。
-     * <p/>
+     *
      * 用于方法需要被多次调用的情况. 先使用本函数先取得Method,然后调用Method.invoke(Object obj, Object... args)
      */
     public static Method getAccessibleMethodByName(final Object obj, final String methodName) {
@@ -270,7 +270,7 @@ public class ReflectionUtils {
     /**
      * 通过反射, 获得Class定义中声明的父类的泛型参数的类型.
      * 如无法找到, 返回Object.class.
-     * <p/>
+     *
      * 如public UserDao extends HibernateDao<User,Long>
      *
      * @param clazz clazz The class to introspect

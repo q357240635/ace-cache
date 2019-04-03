@@ -5,8 +5,8 @@ import java.lang.reflect.Type;
 import java.util.concurrent.ConcurrentHashMap;
 
 import com.ace.cache.api.CacheAPI;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.log4j.Logger;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -30,12 +30,12 @@ import com.ace.cache.parser.impl.DefaultKeyGenerator;
  */
 @Aspect
 @Service
+@Slf4j
 public class CacheAspect {
     @Autowired
     private IKeyGenerator keyParser;
     @Autowired
     private CacheAPI cacheAPI;
-    protected Logger log = Logger.getLogger(this.getClass());
     private ConcurrentHashMap<String, ICacheResultParser> parserMap = new ConcurrentHashMap<String, ICacheResultParser>();
     private ConcurrentHashMap<String, IKeyGenerator> generatorMap = new ConcurrentHashMap<String, IKeyGenerator>();
 

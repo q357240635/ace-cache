@@ -38,6 +38,7 @@ redis:
 ```
 ## 缓存使用
 3、在Service上进行@Cache注解或@CacheClear注解
+
 # 注解说明
 ## 配置缓存：@Cache
  注解参数 | 类型  | 说明
@@ -147,3 +148,45 @@ xsi:schemaLocation="
 ```
 ## 使用方式
 使用方式与spring boot的方式一样，在方法上直接注解即可。
+
+
+## 2019/4/3 
+1、升级springboot 2.1.2.RELEASE 
+
+2、代码优化
+
+3、指定静态资源配置方式
+Java：
+```java
+@Override
+public void addResourceHandlers(ResourceHandlerRegistry registry) {
+
+    registry.addResourceHandler("/static/cache/**")
+            .addResourceLocations("classpath:/META-INF/static/");
+}
+```
+4、请求的url：
+```url
+http://localhost:8762/static/cache/index.html
+```
+nginx：
+```
+    server {
+    		listen		8080;
+    		server_name	localhost;
+    		charset		utf-8;
+    		root		httml/admin;
+    		
+            #cache setting
+            #static resource mapping
+            location	/static/cache {
+                proxy_pass http://localhost:8762/static/cache;
+            }
+            
+            #request mapping
+            location	/cache {
+                proxy_pass http://localhost:8762/cache;
+            }
+    	}
+```
+映射后请求的地址：http://localhost:8080/static/cache/index.html
